@@ -29,3 +29,36 @@ export async function getTasks(req, res) {
     return res.status(500).json({ message: error.message });
   }
 }
+
+export const updateTask = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { description, due_date, status, priority,courseId } = req.body;
+  
+      const task = await Task.findByPk(id);
+      task.description = description;
+      task.due_date = due_date;
+      task.status = status;
+      task.priority = priority;
+      task.courseId = courseId;
+
+      await task.save();
+  
+      res.json(task);
+    } catch (error) {
+      return res.status(500).json({ message: error.message });
+    }
+  };
+
+  export async function deleteTask(req, res) {
+    const { id } = req.params;
+    try {
+      await Task.destroy({
+        where: { id },
+      });
+  
+      return res.sendStatus(204);
+    } catch (error) {
+      return res.status(500).json({ message: error.message });
+    }
+  }
