@@ -28,34 +28,34 @@ export async function getSemesters(req, res) {
   }
 }
 
-// export async function updateTask(req, res) {
+// export async function updateSemester(req, res) {
 //   const { id } = req.params;
-//   // const { projectid, name, done } = req.body;
+//   const { userId, start_date, final_date,description } = req.body;
 //   try {
-//     // const updatedTask = await Task.update(
-//     //   { name, done, projectid },
-//     //   { where: { id } }
-//     // );
+//     const updatedSemester = await Semester.update(
+//       { userId, start_date, final_date,description },
+//       { where: { id } }
+//     );
 
-//     const task = await Task.findOne({
-//       attributes: ["name", "projectId", "done", "id"],
+//     const semester = await Semester.findOne({
+//       attributes: ["userId", "start_date", "final_date", "id", "description"],
 //       where: { id },
 //     });
 
-//     task.set(req.body);
+//     semester.set(req.body);
 
-//     await task.save();
+//     await semester.save();
 
-//     res.json(task);
+//     res.json(semester);
 //   } catch (error) {
 //     return res.status(500).json({ message: error.message });
 //   }
 // }
 
-// export async function deleteTask(req, res) {
+// export async function deleteSemester(req, res) {
 //   const { id } = req.params;
 //   try {
-//     await Task.destroy({
+//     await Semester.destroy({
 //       where: { id },
 //     });
 
@@ -65,14 +65,14 @@ export async function getSemesters(req, res) {
 //   }
 // }
 
-// export async function getTask(req, res) {
+// export async function getSemester(req, res) {
 //   const { id } = req.params;
 //   try {
-//     const task = await Task.findOne({
+//     const semester = await Semester.findOne({
 //       where: { id },
-//       attributes: ["id", "projectId", "name", "done"],
+//       attributes: ["id", "userId", "start_date", "final_date","description"],
 //     });
-//     res.json(task);
+//     res.json(semester);
 //   } catch (error) {
 //     return res.status(500).json({ message: error.message });
 //   }
