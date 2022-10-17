@@ -1,5 +1,4 @@
 'use strict';
-import { Task } from "Task";
 const {
   Model
 } = require('sequelize');
@@ -12,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Course.belongsTo(models.Semester, { as: "author", foreignKey: "semesterId" });
+      Course.hasMany(models.Task, { as:"tasks", foreignKey: "courseId"});
     }
   }
   Course.init({
@@ -23,8 +24,5 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'courses'
   });
 
-  Course.hasMany(Task, { foreinkey: "courseId", sourceKey: "id",});
-  Task.belongsTo(Course, { foreinkey: "courseId", targetId: "id" });
-  
   return Course;
 };

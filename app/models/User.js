@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      User.hasMany(models.Semester, { as:"semesters", foreignKey: "userId"});
     }
   }
   User.init({
@@ -24,8 +25,6 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'users'
   });
 
-  User.hasMany(Semester, { foreinkey: "userId", sourceKey: "id"});
-  Semester.belongsTo(User, { foreinkey: "userId", targetId: "id" });
-
+ 
   return User;
 };
